@@ -1,8 +1,7 @@
 require_relative 'webbasepage'
 class WelcomePage < BrowserContainer
   URL = "https://form.jotform.com/201882323530347"
-  verify_address
-  @continue_button = Button.new('jfWelcome-button jfInput-button  forNext-heading')
+  @continue_button = Button.new(@browser, 'jfWelcome-button jfInput-button  forNext-heading')
 
   def open
     @browser.goto URL
@@ -10,8 +9,7 @@ class WelcomePage < BrowserContainer
   end
 
   def verify_button_presence
-    @continue_button.button_present
-    self
+    @continue_button.
 
   end
 

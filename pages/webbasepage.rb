@@ -1,4 +1,4 @@
-require_relative 'welcomepage'
+
 class BrowserContainer
   def initialize(browser)
     @browser = browser
@@ -14,6 +14,7 @@ class Site < BrowserContainer
   end
 
   def form_page
+    require_relative 'welcomepage'
     @form_page = WelcomePage.new(@browser)
   end
 
@@ -41,21 +42,22 @@ class Textbox < BrowserContainer
   end
 
   def name_field
-    @browser.text_field(:@selector => @selector).wait_until(&:enabled?)
+    @browser.text_field(:id => @selector).wait_until(&:visible?)
   end
 end
 
 class Button < BrowserContainer
-  def initialize(selector)
+  def initialize(browser, selector)
+    @browser = browser
     @selector = selector
-    @element = @browser.button(:xpath => @selector).wait_until(&:enabled?)
+
   end
 
   def button_present
-    return @element.present?
+    @browser.button(:xpath => @selector).wait_until(&:present?)
   end
 
   def click
-    @element.click
+    @browser.button(:xpath => @selector).wait_until(&:enabled?).click
   end
 end

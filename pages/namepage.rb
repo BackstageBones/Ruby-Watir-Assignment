@@ -2,6 +2,7 @@ require_relative 'webbasepage'
 
 
 class NamePage < BrowserContainer
+  include PageObject
   URL = 'https://form.jotform.com/201882323530347'
   @page_header = @browser.text_field(class: 'jsQuestionLabelContainer jfQuestionLabelContainer').wait_until(&:visible?)
 
@@ -10,4 +11,3 @@ class NamePage < BrowserContainer
 
   end
 end
-
