@@ -1,0 +1,6 @@
+Possible issues/bugs that I would raise
+
+1. Form allows user to skip 'namepage', where user is asked to give his name and surname.
+It is possible not to fill those textfields, and continue to the next page.
+solution: raise error when fields are empty, or filled incorrectly.
+
