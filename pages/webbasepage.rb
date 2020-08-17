@@ -31,7 +31,7 @@ class Textbox < BrowserContainer
   def initialize(browser, selector)
     @browser = browser
     @selector = selector
-    @element = @browser.text_field(id: @selector)
+    @element = @browser.text_field(id: @selector).wait_until(&:present?)
 
   end
   def fill_data(name)
@@ -39,13 +39,14 @@ class Textbox < BrowserContainer
     @element.fire_event('onchange')
   end
   end
-  #
-  # def enterdata_as(name)
-  #   name_field.set name
-  #   name_field.fire_event('onchange')
-  # end
-  #
-  # private
-  # def name_field
-  #   @browser.text_field(:id > "firstname")
+class Button < BrowserContainer
+  def initialize(browser, selector)
+    @browser = browser
+    @selector = selector
+    @element = @browser.button(class: @selector).wait_until(&:enabled?)
+  end
+  def click
+    @element.click
+    end 
+  end
 

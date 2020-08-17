@@ -13,7 +13,7 @@ class WelcomePage < Site
   end
 
   def verify_button_presence
-    @continue_button = @browser.button(class: ['jfWelcome-button','jfInput-button','forNext-heading']).wait_until(&:present?)
+    @continue_button = Button.new(@browser, ['jfWelcome-button','jfInput-button','forNext-heading'])
   end
 
   def proceed_to_name_page
@@ -28,18 +28,3 @@ class WelcomePage < Site
 
   #end WelcomePage
 end
-
-#private
-#
-#   def user_field
-#     @browser.text_field(:name => "user")
-#   end
-#
-#   def password_field
-#     @browser.text_field(:name => "pass")
-#   end
-#
-#   def login_button
-#     @browser.button(:id => "login")
-#   end
-# end # LoginPage
