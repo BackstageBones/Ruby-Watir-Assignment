@@ -27,3 +27,25 @@ class Site < BrowserContainer
   end
 end
 
+class Textbox < BrowserContainer
+  def initialize(browser, selector)
+    @browser = browser
+    @selector = selector
+    @element = @browser.text_field(id: @selector)
+
+  end
+  def fill_data(name)
+    @element.set name
+    @element.fire_event('onchange')
+  end
+  end
+  #
+  # def enterdata_as(name)
+  #   name_field.set name
+  #   name_field.fire_event('onchange')
+  # end
+  #
+  # private
+  # def name_field
+  #   @browser.text_field(:id > "firstname")
+
