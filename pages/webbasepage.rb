@@ -27,37 +27,3 @@ class Site < BrowserContainer
   end
 end
 
-
-# Site
-
-class Textbox < BrowserContainer
-  def initialize(selector)
-    @selector = selector
-    name_field
-  end
-
-  def enterdata_as(name)
-    name_field.set name
-    name_field.fire_event('onchange')
-  end
-
-  def name_field
-    @browser.text_field(:id => @selector).wait_until(&:visible?)
-  end
-end
-
-class Button < BrowserContainer
-  def initialize(browser, selector)
-    @browser = browser
-    @selector = selector
-
-  end
-
-  def button_present
-    @browser.button(:xpath => @selector).wait_until(&:present?)
-  end
-
-  def click
-    @browser.button(:xpath => @selector).wait_until(&:enabled?).click
-  end
-end

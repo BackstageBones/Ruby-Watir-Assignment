@@ -1,11 +1,15 @@
 require_relative 'webbasepage'
 
 
-class NamePage < BrowserContainer
-  include PageObject
+class NamePage < Site
   URL = 'https://form.jotform.com/201882323530347'
-  @page_header = @browser.text_field(class: 'jsQuestionLabelContainer jfQuestionLabelContainer').wait_until(&:visible?)
 
+  def initialize(browser)
+    super
+  end
+  def loaded?
+    @page_header = @browser.span(xpath: '//*[@id="label_3"]/span').wait_until(&:visible?)
+  end
   def verify_page_title
     return @page_header.text
 
