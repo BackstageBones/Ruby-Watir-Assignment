@@ -43,7 +43,7 @@ class Button < BrowserContainer
   def initialize(browser, selector)
     @browser = browser
     @selector = selector
-    @element = @browser.button(class: @selector).wait_until(&:enabled?)
+    @element = @browser.button(class: @selector).wait_until(&:present?)
   end
   def click
     @element.click

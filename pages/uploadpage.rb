@@ -1,5 +1,6 @@
 require_relative 'webbasepage'
 require_relative 'namepage'
+require_relative 'signaturepage'
 
 class UploadPage < Site
   URL = 'https://form.jotform.com/201882323530347'
@@ -19,10 +20,20 @@ class UploadPage < Site
     @uploaded_file.text
   end
 
-  def switch_to_previous_page
+  def go_back_to_namepage
     @previous_switch = Button.new(@browser, 'jfInput-button forPrev u-left')
     @previous_switch.click
     next_page = NamePage.new(@browser)
+    Watir::Wait.until { next_page.loaded? }
+
+    next_page
+  end
+
+  def navigate_to_signaturepage
+    #temporary workaround
+    @continue_button = @browser.button(xpath: '//*[@id="cid_9"]/div/div[3]/button[2]')
+    @continue_button.click
+    next_page = SignaturePage.new(@browser)
     Watir::Wait.until { next_page.loaded? }
 
     next_page

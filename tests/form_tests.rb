@@ -2,7 +2,8 @@ require 'Watir'
 require 'rspec/autorun'
 require_relative '../pages/webbasepage'
 require 'test/unit'
-Watir.logger.level = :debug
+#Watir.logger.level = :debug
+Watir.logger.level = :info
 
 
 class MyTest < Test::Unit::TestCase
@@ -19,12 +20,14 @@ class MyTest < Test::Unit::TestCase
     welcome_page.verify_button_presence
     Watir.logger.info("Clicking 'continue button' and proceeding to the next site - button clicked.")
     name_page = welcome_page.proceed_to_name_page
-    name_page.verify_page_title
+    assert_equal(name_page.verify_page_title, "Name")
     name_page.enter_name('Adrian')
     name_page.enter_last_name('Miendlarzewski')
     upload_page = name_page.continue_to_upload_page
     upload_page.upload_file(example_directory)
     assert_equal(upload_page.check_if_file_uploaded, "Grumpy-cat.jpg")
+    signature_page = upload_page.navigate_to_signaturepage
+    signature_page.imitate_signature
 
     Watir.logger.output = 'watir.log'
   end
