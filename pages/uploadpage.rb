@@ -14,6 +14,10 @@ class UploadPage < Site
     # @upload_file_button.click
     @browser.file_field.set(directory)
   end
+  def check_if_file_uploaded
+    @uploaded_file = @browser.span(class: 'qq-upload-file').wait_until(&:present?)
+    @uploaded_file.text
+  end
 
   def switch_to_previous_page
     @previous_switch = Button.new(@browser, 'jfInput-button forPrev u-left')
