@@ -4,3 +4,4 @@ Possible issues/bugs that I would raise
 It is possible not to fill those textfields, and continue to the next page.
 solution: raise error when fields are empty, or filled incorrectly.
 
+2. Form doesn't save users progress, as he moves towards end.

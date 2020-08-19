@@ -11,8 +11,6 @@ class UploadPage < Site
     @page_control = @browser.div(class: 'jfUpload-heading forDesktop').wait_until(&:present?)
   end
   def upload_file(directory)
-    # @upload_file_button = Button.new(@browser, 'inputContainer')
-    # @upload_file_button.click
     @browser.file_field.set(directory)
   end
   def check_if_file_uploaded
