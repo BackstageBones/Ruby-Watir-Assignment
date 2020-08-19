@@ -6,7 +6,8 @@ class SignaturePage < Site
   URL = 'https://form.jotform.com/201882323530347'
 
   def initialize(browser)
-    super
+    super(browser)
+    @continue_button = @browser.button(xpath: '//*[@id="cid_7"]/div/div[3]/button[2]').wait_until(&:present?)
   end
 
   def loaded?
@@ -22,7 +23,7 @@ class SignaturePage < Site
   def navigate_to_datepage
     require_relative  'datepage'
     #workaround
-    @continue_button = @browser.button(xpath: '//*[@id="cid_7"]/div/div[3]/button[2]').wait_until(&:present?)
+
 
     @continue_button.click
     next_page = DatePage.new(@browser)

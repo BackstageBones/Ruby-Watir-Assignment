@@ -4,4 +4,15 @@ Possible issues/bugs that I would raise
 It is possible not to fill those textfields, and continue to the next page.
 solution: raise error when fields are empty, or filled incorrectly.
 
-2. Form doesn't save users progress, as he moves towards end.
+2. The first form allows user to enter incorrect data such as special characters and numbers/
+this should not be allowed and throw an alert. Also switching to next page with that data shouldn't be possible.
+
+
+3. Form often loses date entered in the previous forms, especially when switching pages multiple times.
+
+4. Date page allows user enter whichever date he likes, and doesn't throw an alert when wrong data entered.
+For example user can enter 13 month of the year, which obviously doesn't exist.
+The date can also be far from future, and it will work as long as followed by the rule of '-' separation between numbers.
+
+5. Security question field takes all alphanumeric signs, including numbers and special characters.
+Which is in my opinion, considered as a bug.
